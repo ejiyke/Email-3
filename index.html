@@ -32,13 +32,31 @@
             padding: 32px 24px 16px;
             text-align: left;
         }
-        .brand {
-            color: #2d8d28;
-            font-size: 16px;
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 22px;
+        }
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .header-logo img {
+            display: block;
+            max-width: 130px;
+            height: auto;
+        }
+        .header-title {
+            font-size: 12px;
             font-weight: 700;
-            letter-spacing: 0.02em;
+            letter-spacing: 0.16em;
             text-transform: uppercase;
-            margin-bottom: 16px;
+            color: #9aa69a;
+            white-space: nowrap;
+            padding-top: 8px;
         }
         .streak {
             display: inline-flex;
@@ -73,33 +91,46 @@
             text-align: center;
             box-shadow: 0 16px 40px rgba(30, 63, 26, 0.16);
         }
-        .stats-grid {
-            display: flex;
-            justify-content: space-between;
-            gap: 16px;
-            flex-wrap: wrap;
+        .stats-table {
+            width: 100%;
         }
-        .stat-card {
-            flex: 1 1 33%;
-            min-width: 140px;
+        .stat-cell {
+            text-align: center;
+            padding: 0 10px;
+        }
+        .stat-divider {
+            width: 1px;
+            background: rgba(255,255,255,0.22);
+            font-size: 0;
+            line-height: 0;
         }
         .stat-title {
             margin: 0 0 6px;
-            font-size: 14px;
-            color: rgba(255,255,255,0.85);
+            font-size: 12px;
+            font-weight: 700;
+            color: rgba(255,255,255,0.75);
             text-transform: uppercase;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.1em;
         }
         .stat-value {
             margin: 0;
-            font-size: 28px;
+            font-size: 30px;
             line-height: 1.1;
             font-weight: 700;
+        }
+        .stat-value.accent {
+            color: #f4a341;
         }
         .stat-subtext {
             margin: 6px 0 0;
             font-size: 14px;
             color: rgba(255,255,255,0.85);
+        }
+        .section-heading {
+            margin: 0 0 16px;
+            font-size: 20px;
+            font-weight: 700;
+            color: #0f1720;
         }
         .card {
             border: 1px solid #e6ece4;
@@ -137,22 +168,39 @@
             align-items: center;
         }
         .label-event {
-            color: #3d6f21;
+            color: #6a4fc4;
         }
         .label-virtual {
-            color: #5a489b;
+            color: #6a4fc4;
         }
         .label-deal {
             color: #ac620d;
+        }
+        .price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-top: 16px;
+        }
+        .price-strike {
+            color: #2d8d28;
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: line-through;
         }
         .card-action {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            color: #2d8d28;
+            color: #c2661d;
             font-size: 14px;
             font-weight: 700;
             text-decoration: none;
+        }
+        .price-row .card-action {
+            margin-top: 0;
+        }
+        .card-action.standalone {
             margin-top: 16px;
         }
         .cta {
@@ -178,7 +226,7 @@
             border-radius: 16px;
             padding: 18px 16px;
             background: #f8fbf6;
-            text-align: center;
+            text-align: left;
         }
         .footer-card strong {
             display: block;
@@ -196,7 +244,11 @@
             font-size: 12px;
             color: #6e7a70;
             line-height: 1.7;
-            text-align: center;
+            text-align: left;
+            padding: 24px 24px 0;
+            max-width: 680px;
+            margin: 0 auto;
+            box-sizing: border-box;
         }
         .footer-note a {
             color: #2d8d28;
@@ -212,19 +264,16 @@
             .hero-title {
                 font-size: 30px;
             }
-            .stats-grid {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
+            .stat-value {
+                font-size: 22px;
             }
-            .stat-card {
-                min-width: auto;
+            .stat-title {
+                font-size: 10px;
+            }
+            .stat-cell {
+                padding: 0 6px;
             }
             .footer-links {
-                grid-template-columns: 1fr;
-            }
-        }
-        @media screen and (max-width: 480px) {
-            .stats-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -239,54 +288,72 @@
                         <tr>
                             <td class="inner">
                                 <div class="header">
-                                    <img src="image.png" alt="ConnectNigeria Logo" width="120" style="display:block; margin-bottom:16px;">
-                                    <!-- <div class="brand">ConnectNigeria</div> -->
+                                    <div class="header-top">
+                                        <div class="header-logo">
+                                            <img src="image.png" alt="ConnectNigeria Logo" width="130">
+                                        </div>
+                                        <div class="header-title">Your Weekly Digest</div>
+                                    </div>
                                     <div class="streak">🔥 You're on a 12-week streak</div>
-                                    <h1 class="hero-title">Hi Darlington, here's what's moving.</h1>
-                                    <p class="hero-text">Three picks matched your profile, plus what your listing did this month.</p>
+                                    <h1 class="hero-title">Hi Darlington,<br>here's what's moving.</h1>
+                                    <p class="hero-text">Three picks matched to your profile, plus what your listing did this month.</p>
                                 </div>
 
                                 <div class="stats">
-                                    <div class="stats-grid">
-                                        <div class="stat-card">
-                                            <p class="stat-title">Profile views</p>
-                                            <p class="stat-value">1,284</p>
-                                        </div>
-                                        <div class="stat-card">
-                                            <p class="stat-title">Enquiries</p>
-                                            <p class="stat-value">37</p>
-                                        </div>
-                                        <div class="stat-card">
-                                            <p class="stat-title">Vs last month</p>
-                                            <p class="stat-value">+18%</p>
-                                        </div>
-                                    </div>
+                                    <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="stats-table">
+                                        <tr>
+                                            <td class="stat-cell" width="33%">
+                                                <p class="stat-value">1,284</p>
+                                                <p class="stat-title">Profile views</p>
+                                            </td>
+                                            <td class="stat-divider">&nbsp;</td>
+                                            <td class="stat-cell" width="33%">
+                                                <p class="stat-value">37</p>
+                                                <p class="stat-title">Enquiries</p>
+                                            </td>
+                                            <td class="stat-divider">&nbsp;</td>
+                                            <td class="stat-cell" width="33%">
+                                                <p class="stat-value accent">+18%</p>
+                                                <p class="stat-title">vs last month</p>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </div>
+
+                                <h2 class="section-heading">Picked for you</h2>
 
                                 <div class="card">
                                     <div class="meta"><span class="label-event">EVENT · LAGOS</span></div>
                                     <h3>2026 African SEO & Digital Marketing Summit</h3>
                                     <p>Founders and marketers on AI, data and growth. Early seats going fast.</p>
-                                    <a href="#" class="card-action">₦72,000.00 Register →</a>
+                                    <div class="price-row">
+                                        <span class="price-strike">₦72,000.00</span>
+                                        <a href="#" class="card-action">Register →</a>
+                                    </div>
                                 </div>
 
                                 <div class="card">
                                     <div class="meta"><span class="label-virtual">EVENT · VIRTUAL</span></div>
                                     <h3>PAID Summit 2026 — Africa's Leading Interior Design Stage</h3>
                                     <p>Amplifying the business of design in the digital era.</p>
-                                    <a href="#" class="card-action">₦54,000.00 Register →</a>
+                                    <div class="price-row">
+                                        <span class="price-strike">₦54,000.00</span>
+                                        <a href="#" class="card-action">Register →</a>
+                                    </div>
                                 </div>
 
                                 <div class="card" style="background:#fff7e9; border-color:#f3dcc5;">
                                     <div class="meta"><span class="label-deal">DEAL · SAVE ₦15,000</span></div>
                                     <h3>CAC Registration — now ₦60,000</h3>
                                     <p>Was ₦75,000. Register your business properly, this week only.</p>
-                                    <a href="#" class="card-action">Claim this deal →</a>
+                                    <a href="#" class="card-action standalone">Claim this deal →</a>
                                 </div>
 
                                 <div style="text-align:center;">
                                     <a href="#" class="cta">Open my dashboard →</a>
                                 </div>
+
+                                <h2 class="section-heading">Explore more from ConnectNigeria</h2>
 
                                 <div class="footer-links">
                                     <div class="footer-card">
@@ -302,13 +369,13 @@
                                         <span>Creative that makes your brand pop.</span>
                                     </div>
                                 </div>
-
-                                <p class="footer-note">— The ConnectNigeria Team<br>
-                                <a href="#">Help Center</a> · <a href="#">Contact Us</a><br>
-                                © 2026 ConnectNigeria. All rights reserved.</p>
                             </td>
                         </tr>
                     </table>
+
+                    <p class="footer-note">— The ConnectNigeria Team<br>
+                    <a href="#">Help Center</a> · <a href="#">Contact Us</a><br>
+                    © 2026 ConnectNigeria. All rights reserved.</p>
                 </td>
             </tr>
         </table>
